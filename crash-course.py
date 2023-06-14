@@ -15,8 +15,10 @@ def addToDB(values):
     """)
     connection.commit()
 
-#for i in range(len(readHtml())):
-#    addToDB(readHtml().iloc[[i]].values.flatten().tolist()[1:])
+cursor.execute("CREATE TABLE election()")
+
+for i in range(len(readHtml())):
+    addToDB(readHtml().iloc[[i]].values.flatten().tolist()[1:])
 
 result = cursor.execute("SELECT * FROM election WHERE election.'Party or Label' = 'Republican'")
 print(result.fetchall())
